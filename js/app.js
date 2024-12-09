@@ -45,3 +45,49 @@ clkbtn.addEventListener('click', ()=>{
    }
 });
 
+
+
+// 
+
+
+document.addEventListener('DOMContentLoaded', () => {
+   const lightboxModal = document.getElementById('lightbox-modal');
+   const lightboxImg = document.getElementById('lightbox-img');
+   const closeBtn = document.querySelector('.lightbox-close');
+   const uploadInput = document.getElementById('upload-img');
+
+   // Open lightbox for static images
+   document.querySelectorAll('.image-link').forEach(link => {
+       link.addEventListener('click', (e) => {
+           e.preventDefault(); // Prevent default link behavior
+           const imgSrc = link.getAttribute('data-src');
+           lightboxImg.src = imgSrc; // Set lightbox image source
+           lightboxModal.style.display = 'block'; // Show the modal
+       });
+   });
+
+   // Handle image upload
+   uploadInput.addEventListener('change', (event) => {
+       const file = event.target.files[0];
+       if (file) {
+           const reader = new FileReader();
+           reader.onload = (e) => {
+               lightboxImg.src = e.target.result; // Load uploaded image into lightbox
+               lightboxModal.style.display = 'block'; // Show the modal
+           };
+           reader.readAsDataURL(file);
+       }
+   });
+
+   // Close the lightbox
+   closeBtn.addEventListener('click', () => {
+       lightboxModal.style.display = 'none';
+   });
+
+   // Close the lightbox when clicking outside the image
+   lightboxModal.addEventListener('click', (e) => {
+       if (e.target === lightboxModal) {
+           lightboxModal.style.display = 'none';
+       }
+   });
+});
