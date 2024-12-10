@@ -171,3 +171,83 @@
     });
 
 })(jQuery);
+
+
+
+// product details
+
+
+
+// Array to store cart items
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Function to update cart UI
+function updateCartUI() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartTotalElement = document.getElementById('cart-total');
+    let total = 0;
+
+    // Clear existing cart items
+    cartItemsContainer.innerHTML = '';
+
+    // Display each item in the cart
+    cart.forEach((item, index) => {
+        total += parseFloat(item.price.replace('Rs.', '').trim());
+
+        const cartRow = `
+            <tr>
+                <td><img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px;"></td>
+                <td>${item.name}</td>
+                <td>${item.price}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Remove</button>
+                </td>
+            </tr>
+        `;
+        cartItemsContainer.innerHTML += cartRow;
+    });
+
+    // Update total price
+    cartTotalElement.textContent = `Total: Rs. ${total}`;
+}
+
+// Function to update cart count
+function updateCartCount() {
+const cartCountElement = document.getElementById('cart-count');
+const cart = JSON.parse(localStorage.getItem("cart")) || []; // Get cart from localStorage
+cartCountElement.textContent = cart.length; // Update count
+}
+
+// Load cart count on page load
+document.addEventListener('DOMContentLoaded', updateCartCount);
+
+
+// Function to remove an item from the cart
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartUI();
+}
+
+// Function to add an item to the cart
+function addToCart(name, price, image) {
+    const product = { name, price, image };
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartUI();
+    alert(`${name} added to cart.`);
+}
+
+// Load the cart on page load
+document.addEventListener('DOMContentLoaded', updateCartUI);
+
+
+
+
+
+
+        function changeImage(thumbnail) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = thumbnail.src;
+        }
+
