@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .cart-table img {
+      width: 50px;
+      height: auto;
+    }
+    .cart-table td, .cart-table th {
+      vertical-align: middle;
+    }
+    .remove-btn {
+      cursor: pointer;
+      color: red;
+      font-size: 18px;
+    }
+    .remove-btn:hover {
+      text-decoration: underline;
+    }
+    .total-price {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container mt-4">
+    <h2>Your Cart</h2>
+    <table class="table table-bordered table-striped cart-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems">
+        <!-- Cart items will be populated here dynamically -->
+      </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-between">
+      <div class="total-price" id="totalPrice">Total Price: Rs. 0</div>
+      <button class="btn btn-primary mt-4">Buy</button>
+    </div>
+  </div>
+
+  <script>
+    // Fetch cart data from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Get the table body element and total price display element
+    let cartItemsContainer = document.getElementById('cartItems');
+    let totalPriceContainer = document.getElementById('totalPrice');
+
+    let totalPrice = 0; // Variable to calculate the total price
+
+    // Populate the cart items in the table without serial number
+    cart.forEach((item, index) => {
+      let cartItemRow = `
+        <tr>
+          <td><img src="${item.image}" alt="${item.name}"></td>
+          <td>${item.name}</td>
+          <td><input type="number" value="1" min="1" class="form-control quantity" data-index="${index}"></td>
+          <td>${item.price}</td>
+          <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
+        </tr>
+      `;
+      cartItemsContainer.innerHTML += cartItemRow;
+
+      // Sum the price of each item to calculate total
+      totalPrice += parseInt(item.price.replace('Rs.', '').trim());
+    });
+
+    // Display the total price
+    totalPriceContainer.textContent = `Total Price: Rs. ${totalPrice}`;
+
+    // Remove an item from the cart
+    function removeItem(index) {
+      cart.splice(index, 1); // Remove the item from the cart array
+      localStorage.setItem('cart', JSON.stringify(cart)); // Update the localStorage
+      window.location.reload(); // Reload the page to update the cart display
+    }
+
+    // Update the quantity and total when changed
+    document.querySelectorAll('.quantity').forEach((input) => {
+      input.addEventListener('change', (e) => {
+        let quantity = e.target.value;
+        let index = e.target.dataset.index;
+        // Update the cart array with new quantity (if needed for more advanced functionality)
+        cart[index].quantity = quantity;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        window.location.reload(); // Reload the page to reflect the updated quantity and price
+      });
+    });
+  </script>
+
+</body>
+</html>
