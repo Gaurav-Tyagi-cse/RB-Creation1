@@ -584,7 +584,7 @@
 .single-product-item {
     width: 70% !important; /* Utilize full width based on the column */
     max-width: 250px; /* Fixed max width */
-    height: 290px; /* Fixed height */
+    height: 200px; /* Fixed height */
     margin: auto; /* Center the cards horizontally */
     text-align: center; /* Center-align the text */
     position: relative; /* Enable positioning for child elements */
@@ -604,17 +604,14 @@
 }
 
 /* Style the status badges */
-.p-status {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #ff6f61; /* Default badge color */
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    font-weight: bold;
+.p-sta{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: gray;
+  color: white;
+  padding: 5px;
+  font-size: 12px;
 }
 
 .p-status.sale {
@@ -626,7 +623,9 @@
 }
 
 /* Adjust text area in the card */
-
+.product-text{
+  margin-top: 10px;
+}
 
 .product-text h6 {
     font-size: 1.2rem;
@@ -742,7 +741,7 @@
   margin-bottom: 20px;
 }
 .main-image {
-  width: 50%;
+  width: 200px;
   max-width: 600px;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -828,6 +827,7 @@
   margin-left: 140px;
   margin-top: 10px;
 }
+
 
 @media (min-width: 768px) {
   .product-section {
