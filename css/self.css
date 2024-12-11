@@ -582,9 +582,9 @@
 
 /* Ensure uniform size for product cards */
 .single-product-item {
-    width: 100%; /* Utilize full width based on the column */
+    width: 70% !important; /* Utilize full width based on the column */
     max-width: 250px; /* Fixed max width */
-    height: 350px; /* Fixed height */
+    height: 290px; /* Fixed height */
     margin: auto; /* Center the cards horizontally */
     text-align: center; /* Center-align the text */
     position: relative; /* Enable positioning for child elements */
@@ -626,9 +626,7 @@
 }
 
 /* Adjust text area in the card */
-.product-text {
-    padding: 15px;
-}
+
 
 .product-text h6 {
     font-size: 1.2rem;
@@ -704,7 +702,7 @@
 
 
       .substitute-menu{
-        background-image: url(../RB-img/bg-img.jpg);
+        background-image: url(../RB-img/);
        background-repeat: no-repeat;
        background-size: cover;
       }
