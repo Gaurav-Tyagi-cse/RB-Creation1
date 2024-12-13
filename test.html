@@ -128,6 +128,49 @@
     border-color: #007bff; /* Highlight the active thumbnail */
   }
 
+
+  .row {
+  display: flex;
+  justify-content: space-between; /* Ensures even spacing between images */
+  gap: 10px; /* Space between images */
+}
+
+.row img {
+  width: 23%; /* Allocates space for four images (23% x 4 + gaps = ~100%) */
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.row img:hover {
+  transform: scale(1.1); /* Adds hover effect for better interactivity */
+}
+
+/* Media Query for Desktop, Tablet, and Mobile */
+@media screen and (max-width: 1024px) {
+  .row {
+    gap: 8px; /* Adjust gaps slightly for smaller screens */
+  }
+
+  .row img {
+    width: 23%; /* Maintain four images in a row */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .row {
+    gap: 5px; /* Reduce gap for very small screens */
+  }
+
+  .row img {
+    width: 23%; /* Consistent 4 images */
+  }
+}
+
+
     </style>
   </head>
 
