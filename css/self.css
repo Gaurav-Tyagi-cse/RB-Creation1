@@ -1029,7 +1029,7 @@ justify-content: space-between; /* Ensures even spacing between images */
 }
 
 .row img {
-width: 23%; /* Allocates space for four images (23% x 4 + gaps = ~100%) */
+/* width: 23%;  */
 max-width: 100%;
 border: 1px solid #ccc;
 border-radius: 5px;
@@ -1048,9 +1048,9 @@ transform: scale(1.1); /* Adds hover effect for better interactivity */
 gap: 5px; /* Adjust gaps slightly for smaller screens */
 }
 
-.row img {
-width: 23%; /* Maintain four images in a row */
-}
+/* .row img {
+width: 23%; 
+} */
 }
 
 @media screen and (max-width: 600px) {
@@ -1058,9 +1058,9 @@ width: 23%; /* Maintain four images in a row */
 gap: 5px; /* Reduce gap for very small screens */
 }
 
-.row img {
-width: 23%; /* Consistent 4 images */
-}
+/* .row img {
+width: 23%; 
+} */
 }
 
 
@@ -1082,8 +1082,8 @@ width: 23%; /* Consistent 4 images */
 
 .container {
     position: relative;
-    width: 1200px;
-    display: grid;
+    /* width: 1200px; */
+    /* display: grid; */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 20px;
     padding: 20px;
