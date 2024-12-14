@@ -58,61 +58,7 @@
 		});
 	});
 
-    /*------------------
-        Carousel Slider
-    --------------------*/
-     $(".hero-items").owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: true,
-        items: 1,
-        dots: true,
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-        smartSpeed: 1200,
-        autoplayHoverPause: true,
-        mouseDrag: false,
-        autoplay: false,
-    });
-
-    /*------------------
-        Carousel Slider
-    --------------------*/
-    $(".logo-items").owlCarousel({
-        loop: true,
-		nav: false,
-		dots: false,
-		margin : 40,
-		autoplay: true,
-        responsive: {
-            0: {
-                items: 2
-            },
-            480: {
-                items: 2
-            },
-            768: {
-                items: 3
-            },
-            992: {
-                items: 5
-            }
-        }
-    });
-
-
-    /*------------------
-        Carousel Slider
-    --------------------*/
-    $(".product-slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: false,
-        items: 1,
-        dots: true,
-        autoplay: true,
-    });
+  
     
 
     /*------------------

@@ -1,691 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Yoga Studio Template" />
-    <meta name="keywords" content="Yoga, unica, creative, html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>RB Creation</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Lens Effect</title>
+  <style>
+    /* Image container styling */
+    .image-container {
+      position: relative;
+      width: 250px;
+      height: 400px;
+      overflow: hidden;
+      border: 2px solid #ccc;
+      margin: 20px auto;
+    }
 
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
-      rel="stylesheet"
-    />
+    .main-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css" />
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    /* Lens styling */
+    .lens {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+    }
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-
-    <link rel="stylesheet" href="css/self.css" type="text/css" />
-    <style>
-      .slideshow-items {
-        width: 500px;
-      }
-      .slideshow-thumbnails {
-        width: 100px;
-      }
-      #slideshow-items-container {
-        display: inline-block;
-        position: relative;
-      }
-
-      #lens {
-        background-color: rgba(233, 233, 233, 0.4);
-      }
-      #lens,
-      #result {
-        position: absolute;
-        display: none;
-        z-index: 1;
-      }
-      .slideshow-items {
-        display: none;
-      }
-      .slideshow-items.active {
-        display: block;
-      }
-      .slideshow-thumbnails {
-        opacity: 0.5;
-      }
-      .slideshow-thumbnails.active {
-        opacity: 1;
-      }
-      #lens,
-      .slideshow-items,
-      .slideshow-thumbnails,
-      #result {
-        border: solid var(--light-grey-2) 1px;
-      }
-
-/*  */
-
-#slideshow-items-container {
-    width: 100%; /* Fixed width for the container */
-    height: 400px; /* Fixed height for the container */
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #ccc; /* Optional border for visual clarity */
-  }
-
-  .slideshow-items {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensure the full image is visible */
-    position: absolute;
-    display: none; /* Hide all images by default */
-  }
-
-  .slideshow-items.active {
-    display: block; /* Show only the active image */
-  }
-
-  /* Styling for the result div (zoomed image) */
-  #result {
-    width: 250px; /* Adjust the zoom preview size */
-    height: 200px;
-    background-repeat: no-repeat;
-    position: absolute;
-    display: none; /* Hidden by default */
-  }
-
-  /* Styling for the thumbnails */
-  .row {
-    display: flex;
-    gap: 10px; /* Space between thumbnails */
-    margin-top: 10px;
-    justify-content: center;
-  }
-
-  .slideshow-thumbnails {
-    width: 100px; /* Fixed width for thumbnails */
-    height: 75px; /* Fixed height for thumbnails */
-    object-fit: contain; /* Ensure the full image is visible */
-    cursor: pointer; /* Indicate clickable elements */
-    border: 2px solid transparent; /* Border for styling */
-    transition: border 0.3s;
-  }
-
-  .slideshow-thumbnails.active {
-    border-color: #007bff; /* Highlight the active thumbnail */
-  }
-
-
-  .row {
-  display: flex;
-  justify-content: space-between; /* Ensures even spacing between images */
-  gap: 7px; /* Space between images */
-}
-
-.row img {
-  width: 23%; /* Allocates space for four images (23% x 4 + gaps = ~100%) */
-  max-width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-}
-
-.row img:hover {
-  transform: scale(1.1); /* Adds hover effect for better interactivity */
-}
-
-/* Media Query for Desktop, Tablet, and Mobile */
-@media screen and (max-width: 1024px) {
-  .row {
-    gap: 5px; /* Adjust gaps slightly for smaller screens */
-  }
-
-  .row img {
-    width: 23%; /* Maintain four images in a row */
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .row {
-    gap: 5px; /* Reduce gap for very small screens */
-  }
-
-  .row img {
-    width: 23%; /* Consistent 4 images */
-  }
-}
-
-
-    </style>
-  </head>
-
-  <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>
-
-    <!-- Search model -->
-    <div class="search-model">
-      <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-          <input type="text" id="search-input" placeholder="Search here....." />
-        </form>
-      </div>
-    </div>
-    <!-- Search model end -->
-
-    <!-- Header Section Begin -->
-
-    <div class="header-cont">
-      <div class="header-part">
-        <div class="header-sub">
-          <div class="img-header">
-            <a href="./index.html"
-              ><img src="./RB-img/logo-bg remove.png" alt="" width="80px"
-            /></a>
-          </div>
-          <div class="nav-syst">
-            <div class="links-s">
-              <a href="index.html">Home</a>
-            </div>
-            <div class="links-s">
-              <a href="#" class="drop-section" id="drop-main"
-                >Design Categories</a
-              >
-              <div class="substitute-menu">
-                <div class="new-dropdown">
-                  <a
-                    href="#"
-                    id="drop-sc"
-                    style="text-decoration: underline; color: blue"
-                    >Suit & Dupatta</a
-                  >
-                  <ul class="design-sub-menu">
-                    <a href="suit.html">Suit</a>
-                    <a href="#">Dupatta</a>
-                    <a href="#">Kani, Kashmir patterns</a>
-                    <a href="#">Shawl</a>
-                    <a href="#">Dupatta</a>
-                    <a href="#">Caftan</a>
-                  </ul>
-                </div>
-                <div class="new-dropdown">
-                  <a
-                    href="#"
-                    id="drop-sc"
-                    style="text-decoration: underline; color: blue"
-                    >Dress Material</a
-                  >
-                  <ul class="design-sub-menu">
-                    <a href="Floral.html">Floral</a>
-                    <a href="#">Geometric, Trellis</a>
-                    <a href="Jacobina.html">Jacobean</a>
-                    <a href="#">Leaves</a>
-                    <a href="#">Medallion</a>
-                    <a href="Paisley.html">Paisley</a>
-                    <a href="#">Patchworks</a>
-                    <a href="#">Scroll</a>
-                    <a href="#">Textures</a>
-                    <a href="#">Coastal, Nautical</a>
-                    <a href="#">Contemporary</a>
-                    <a href="#">Check Patterns</a>
-                    <a href="#">Damask</a>
-                    <a href="Ethnic.html">Ethnic</a>
-                    <a href="#">Stripes Pattern</a>
-                    <a href="#">Watercolor Patterns</a>
-                  </ul>
-                </div>
-                <div class="new-dropdown">
-                  <a
-                    href="#"
-                    id="drop-sc"
-                    style="text-decoration: underline; color: blue"
-                    >Seasonal</a
-                  >
-                  <ul class="design-sub-menu">
-                    <a href="#">Christmas</a>
-                    <a href="#">Halloween</a>
-                    <a href="#">Harvest</a>
-                  </ul>
-                </div>
-                <div class="new-dropdown">
-                  <a
-                    href="#"
-                    id="drop-sc"
-                    style="text-decoration: underline; color: blue"
-                    >Embroideries</a
-                  >
-                  <ul class="design-sub-menu">
-                    <a href="#">Coastal</a>
-                    <a href="#">Contemporary</a>
-                    <a href="#">Conversational</a>
-                    <a href="Ethnic.html">Ethnic</a>
-                    <a href="">Geometric</a>
-                    <a href="Jacobina.html">Jacobean And Scroll</a>
-                    <a href="#">Leaves And Damask</a>
-                    <a href="Paisley.html">Paisley</a>
-                    <a href="#">Texture</a>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="links-s">
-              <a href="trades.html">Trade Shows</a>
-            </div>
-            <div class="links-s">
-              <a href="about.html">About Us</a>
-            </div>
-            <div class="links-s">
-              <a href="contact.html">Contact</a>
-            </div>
-          </div>
-          <div class="log-links">
-            <!-- <img src="img/icons/search.png" alt="" class="search-trigger" /> -->
-            <i class="fa-solid fa-magnifying-glass search-trigger"></i>
-
-            <a href="./cart.html">
-              <!-- <img src="img/icons/bag.png" alt="" /> -->
-              <i class="fa-solid fa-cart-shopping"></i>
-              <span>2</span>
-            </a>
-
-            <a href="#" class="in">Sign in</a>
-
-            <div class="nav-cl">
-              <i class="fa-solid fa-bars"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- nav bar end -->
-<div class="containor">
-    <div class="product-section">
-      <div class="image-gallery">
-        <div id="lens"></div>
-
-        <div id="slideshow-items-container">
-          <img class="slideshow-items active" src="./RB-img/Suit/img5.jpg" />
-          <img class="slideshow-items" src="./RB-img/Suit/img6.jpg" />
-          <img class="slideshow-items" src="./RB-img/Suit/img7.jpg" />
-          <img class="slideshow-items" src="./RB-img/Suit/img8.jpg" />
-        </div>
-
-        <div id="result"></div>
-
-        <div class="row">
-          <img
-            class="slideshow-thumbnails active"
-            src="./RB-img/Suit/img5.jpg"
-          />
-          <img class="slideshow-thumbnails" src="./RB-img/Suit/img6.jpg" />
-          <img class="slideshow-thumbnails" src="./RB-img/Suit/img7.jpg" />
-          <img class="slideshow-thumbnails" src="./RB-img/Suit/img8.jpg" />
-        </div>
-
-         
-      </div>
-      <div class="product-details">
-        <h1 class="product-title">Suit</h1>
-        <p class="product-price">
-          Rs 300
-          <span style="text-decoration: line-through; color: #999">Rs 500</span>
-        </p>
-
-        <div class="product-overview">
-          <h3>Product Overview:</h3>
-          <br />
-          <ul>
-            <li>D-10037</li>
-            <li>Front-Size: 32"X 51"in</li>
-            <li>Back-Size: 32"X 51"in</li>
-            <li>Shawl-Size: 86.613"X 28.5"</li>
-            <li>Kani Kashmiree designs</li>
-            <li>PASHMINA DIGITAL PRINT</li>
-          </ul>
-        </div>
-        <div class="button-container">
-          <a href="./cart.html">
-            <button
-              onclick="addToCart('Suit', 'Rs. 300', './RB-img/Suit/IMG-20241209-WA0008.jpg')"
-              class="btn border border-secondary rounded-pill px-3 text-primary"
-            >
-              <i class="fa fa-shopping-bag me-2 text-primary"></i>
-              Add to cart
-            </button>
-          </a>
-          <button
-            class="btn btn-primary rounded-pill px-3"
-            onclick="redirectToCart()"
-          >
-            Buy Now
-          </button>
-        </div>
-      </div>
-    </div>
+    /* Hover zoom effect */
+    .image-container:hover .main-image {
+      transform: scale(2);
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img src="./RB-img/Suit/img6.jpg" 
+         alt="Sample Image" class="main-image">
+    <div class="lens"></div>
   </div>
-    <!-- Related Product Section End -->
 
-    <!-- Footer Section Begin -->
+  <script>
+    // Select elements
+    const imageContainer = document.querySelector('.image-container');
+    const lens = document.querySelector('.lens');
+    const mainImage = document.querySelector('.main-image');
 
-    <footer class="footer-section spad">
-      <div class="container">
-        <div class="footer-widget">
-          <div class="row">
-            <div class="col-lg-3 col-sm-6">
-              <div class="single-footer-widget">
-                <h4>About us</h4>
-                <ul>
-                  <li>About Us</li>
-                  <li>Community</li>
-                  <li>Jobs</li>
-                  <li>Shipping</li>
-                  <li>Contact Us</li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="single-footer-widget">
-                <h4>Customer Care</h4>
-                <ul>
-                  <li>Search</li>
-                  <li>Privacy Policy</li>
-                  <li>2019 Lookbook</li>
-                  <li>Shipping & Delivery</li>
-                  <li>Gallery</li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="single-footer-widget">
-                <h4>Our Services</h4>
-                <ul>
-                  <li>Free Shipping</li>
-                  <li>Free Returnes</li>
-                  <li>Our Franchising</li>
-                  <li>Terms and conditions</li>
-                  <li>Privacy Policy</li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="single-footer-widget">
-                <h4>Information</h4>
-                <ul>
-                  <li>Payment methods</li>
-                  <li>Times and shipping costs</li>
-                  <li>Product Returns</li>
-                  <li>Shipping methods</li>
-                  <li>Conformity of the products</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="social-links-warp">
-        <div class="container">
-          <div class="social-links">
-            <a href="#" class="instagram"
-              ><i class="fa-brands fa-instagram"></i><span>instagram</span></a
-            >
-            <!-- <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>Pinter's</span></a> -->
-            <a href="#" class="facebook"
-              ><i class="fa-brands fa-facebook"></i><span>facebook</span></a
-            >
-            <a href="#" class="twitter"
-              ><i class="fa-brands fa-twitter"></i><span>twitter</span></a
-            >
-            <a href="#" class="youtube"
-              ><i class="fa-brands fa-youtube"></i><span>youtube</span></a
-            >
-            <a href="#" class="tumblr"
-              ><i class="fa-brands fa-tumblr-square"></i><span>tumblr</span></a
-            >
-          </div>
-        </div>
+    // Event listeners
+    imageContainer.addEventListener('mousemove', moveLens);
+    imageContainer.addEventListener('mouseenter', () => {
+      lens.style.display = 'block';
+    });
+    imageContainer.addEventListener('mouseleave', () => {
+      lens.style.display = 'none';
+      mainImage.style.transformOrigin = 'center center'; // Reset transform origin
+    });
 
-        <div class="container text-center pt-5">
-          <p>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;
-            <script>
-              document.write(new Date().getFullYear());
-            </script>
-            All rights reserved | Design & Maintain
-            <i class="icon-heart color-danger" aria-hidden="true"></i> by
-            <a href="https://www.bhoomitechzone.in/" target="_blank">BTPL</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p>
-        </div>
-      </div>
-    </footer>
+    function moveLens(e) {
+      const rect = imageContainer.getBoundingClientRect();
 
-    <!-- Footer Section End -->
+      // Calculate lens position
+      let x = e.clientX - rect.left - lens.offsetWidth / 2;
+      let y = e.clientY - rect.top - lens.offsetHeight / 2;
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/app.js"></script>
+      // Constrain lens position within the bounds of the container
+      const maxX = imageContainer.offsetWidth - lens.offsetWidth;
+      const maxY = imageContainer.offsetHeight - lens.offsetHeight;
 
-    <!-- <script>
-      $(document).ready(function () {
-        $(".slideshow-thumbnails").hover(function () {
-          changeSlide($(this));
-        });
+      if (x < 0) x = 0;
+      if (y < 0) y = 0;
+      if (x > maxX) x = maxX;
+      if (y > maxY) y = maxY;
 
-        $(document).mousemove(function (e) {
-          var x = e.clientX;
-          var y = e.clientY;
+      // Move the lens
+      lens.style.left = x + 'px';
+      lens.style.top = y + 'px';
 
-          var x = e.clientX;
-          var y = e.clientY;
+      // Calculate transform origin for zoom effect
+      const zoomLevel = 2; // Same as the scale factor in CSS
+      const zoomX = (x + lens.offsetWidth / 2) / imageContainer.offsetWidth * 100;
+      const zoomY = (y + lens.offsetHeight / 2) / imageContainer.offsetHeight * 100;
 
-          var imgx1 = $(".slideshow-items.active").offset().left;
-          var imgx2 = $(".slideshow-items.active").outerWidth() + imgx1;
-          var imgy1 = $(".slideshow-items.active").offset().top;
-          var imgy2 = $(".slideshow-items.active").outerHeight() + imgy1;
-
-          if (x > imgx1 && x < imgx2 && y > imgy1 && y < imgy2) {
-            $("#lens").show();
-            $("#result").show();
-            imageZoom($(".slideshow-items.active"), $("#result"), $("#lens"));
-          } else {
-            $("#lens").hide();
-            $("#result").hide();
-          }
-        });
-      });
-
-      function imageZoom(img, result, lens) {
-        result.width(img.innerWidth());
-        result.height(img.innerHeight());
-        lens.width(img.innerWidth() / 2);
-        lens.height(img.innerHeight() / 2);
-
-        result.offset({
-          top: img.offset().top,
-          left: img.offset().left + img.outerWidth() + 10,
-        });
-
-        var cx = img.innerWidth() / lens.innerWidth();
-        var cy = img.innerHeight() / lens.innerHeight();
-
-        result.css("backgroundImage", "url(" + img.attr("src") + ")");
-        result.css(
-          "backgroundSize",
-          img.width() * cx + "px " + img.height() * cy + "px"
-        );
-
-        lens.mousemove(function (e) {
-          moveLens(e);
-        });
-        img.mousemove(function (e) {
-          moveLens(e);
-        });
-        lens.on("touchmove", function () {
-          moveLens();
-        });
-        img.on("touchmove", function () {
-          moveLens();
-        });
-
-        function moveLens(e) {
-          var x = e.clientX - lens.outerWidth() / 2;
-          var y = e.clientY - lens.outerHeight() / 2;
-          if (x > img.outerWidth() + img.offset().left - lens.outerWidth()) {
-            x = img.outerWidth() + img.offset().left - lens.outerWidth();
-          }
-          if (x < img.offset().left) {
-            x = img.offset().left;
-          }
-          if (y > img.outerHeight() + img.offset().top - lens.outerHeight()) {
-            y = img.outerHeight() + img.offset().top - lens.outerHeight();
-          }
-          if (y < img.offset().top) {
-            y = img.offset().top;
-          }
-          lens.offset({ top: y, left: x });
-          result.css(
-            "backgroundPosition",
-            "-" +
-              (x - img.offset().left) * cx +
-              "px -" +
-              (y - img.offset().top) * cy +
-              "px"
-          );
-        }
-      }
-
-      function changeSlide(elm) {
-        $(".slideshow-items").removeClass("active");
-        $(".slideshow-items").eq(elm.index()).addClass("active");
-        $(".slideshow-thumbnails").removeClass("active");
-        $(".slideshow-thumbnails").eq(elm.index()).addClass("active");
-      }
-    </script> -->
-    <script>
-        $(document).ready(function () {
-          $(".slideshow-thumbnails").hover(function () {
-            changeSlide($(this));
-          });
-      
-          $(document).mousemove(function (e) {
-            if (window.innerWidth > 768) { // Disable zoom for screens smaller than 768px
-              var x = e.clientX;
-              var y = e.clientY;
-      
-              var imgx1 = $(".slideshow-items.active").offset().left;
-              var imgx2 = $(".slideshow-items.active").outerWidth() + imgx1;
-              var imgy1 = $(".slideshow-items.active").offset().top;
-              var imgy2 = $(".slideshow-items.active").outerHeight() + imgy1;
-      
-              if (x > imgx1 && x < imgx2 && y > imgy1 && y < imgy2) {
-                $("#lens").show();
-                $("#result").show();
-                imageZoom($(".slideshow-items.active"), $("#result"), $("#lens"));
-              } else {
-                $("#lens").hide();
-                $("#result").hide();
-              }
-            } else {
-              $("#lens").hide();
-              $("#result").hide();
-            }
-          });
-        });
-      
-        function imageZoom(img, result, lens) {
-          result.width(img.innerWidth());
-          result.height(img.innerHeight());
-          lens.width(img.innerWidth() / 2);
-          lens.height(img.innerHeight() / 2);
-      
-          result.offset({
-            top: img.offset().top,
-            left: img.offset().left + img.outerWidth() + 10,
-          });
-      
-          var cx = img.innerWidth() / lens.innerWidth();
-          var cy = img.innerHeight() / lens.innerHeight();
-      
-          result.css("backgroundImage", "url(" + img.attr("src") + ")");
-          result.css(
-            "backgroundSize",
-            img.width() * cx + "px " + img.height() * cy + "px"
-          );
-      
-          lens.mousemove(function (e) {
-            moveLens(e);
-          });
-          img.mousemove(function (e) {
-            moveLens(e);
-          });
-          lens.on("touchmove", function () {
-            moveLens();
-          });
-          img.on("touchmove", function () {
-            moveLens();
-          });
-      
-          function moveLens(e) {
-            var x = e.clientX - lens.outerWidth() / 2;
-            var y = e.clientY - lens.outerHeight() / 2;
-            if (x > img.outerWidth() + img.offset().left - lens.outerWidth()) {
-              x = img.outerWidth() + img.offset().left - lens.outerWidth();
-            }
-            if (x < img.offset().left) {
-              x = img.offset().left;
-            }
-            if (y > img.outerHeight() + img.offset().top - lens.outerHeight()) {
-              y = img.outerHeight() + img.offset().top - lens.outerHeight();
-            }
-            if (y < img.offset().top) {
-              y = img.offset().top;
-            }
-            lens.offset({ top: y, left: x });
-            result.css(
-              "backgroundPosition",
-              "-" +
-                (x - img.offset().left) * cx +
-                "px -" +
-                (y - img.offset().top) * cy +
-                "px"
-            );
-          }
-        }
-      
-        function changeSlide(elm) {
-          $(".slideshow-items").removeClass("active");
-          $(".slideshow-items").eq(elm.index()).addClass("active");
-          $(".slideshow-thumbnails").removeClass("active");
-          $(".slideshow-thumbnails").eq(elm.index()).addClass("active");
-        }
-      </script>
-      
-  </body>
+      mainImage.style.transformOrigin = `${zoomX}% ${zoomY}%`;
+    }
+  </script>
+</body>
 </html>
