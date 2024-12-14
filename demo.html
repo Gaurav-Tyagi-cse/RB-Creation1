@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Yoga Studio Template" />
+    <meta name="keywords" content="Yoga, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>RB Creation</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css" />
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="css/self.css" type="text/css" />
+    <style>
+    
+    /* Image container styling */
+    .image-container {
+      position: relative;
+      width: 250px;
+      height: 400px;
+      overflow: hidden;
+      border: 2px solid #ccc;
+      margin: 20px auto;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    /* Lens styling */
+    .lens {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+    }
+
+    /* Hover zoom effect */
+    .image-container:hover .main-image {
+      transform: scale(2);
+    }
+
+
+    
+  /* Flex container for image and details */
+  .product-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+  }
+
+  /* Styling for the image container */
+  .image-container {
+    flex: 1;
+    max-width: 40%;
+    margin-right: 20px; /* Adds spacing between image and details */
+  }
+
+  /* Styling for the details */
+  .product-details {
+    flex: 1;
+    max-width: 55%;
+  }
+
+  /* Ensure the main image scales properly */
+  .main-image {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Lens styling remains the same */
+  .lens {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    display: none;
+    z-index: 10;
+  }
+
+  /* Adjust the layout for smaller screens */
+  @media (max-width: 768px) {
+    .product-container {
+      flex-direction: column;
+    }
+
+    .image-container {
+      max-width: 100%;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    .product-details {
+      max-width: 100%;
+    }
+  }
+  </style>
+
+   
+  </head>
+
+  <body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Search model -->
+    <div class="search-model">
+      <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <form class="search-model-form">
+          <input type="text" id="search-input" placeholder="Search here....." />
+        </form>
+      </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Header Section Begin -->
+
+    <div class="header-cont">
+      <div class="header-part">
+        <div class="header-sub">
+          <div class="img-header">
+            <a href="./index.html"
+              ><img src="./RB-img/logo-bg remove.png" alt="" width="80px"
+            /></a>
+          </div>
+          <div class="nav-syst">
+            <div class="links-s">
+              <a href="index.html">Home</a>
+            </div>
+            <div class="links-s">
+              <a href="#" class="drop-section" id="drop-main"
+                >Design Categories</a
+              >
+              <div class="substitute-menu">
+                <div class="new-dropdown">
+                  <a
+                    href="#"
+                    id="drop-sc"
+                    style="text-decoration: underline; color: blue"
+                    >Suit & Dupatta</a
+                  >
+                  <ul class="design-sub-menu">
+                    <a href="suit.html">Suit</a>
+                    <a href="#">Dupatta</a>
+                    <a href="#">Kani, Kashmir patterns</a>
+                    <a href="#">Shawl</a>
+                    <a href="#">Dupatta</a>
+                    <a href="#">Caftan</a>
+                  </ul>
+                </div>
+                <div class="new-dropdown">
+                  <a
+                    href="#"
+                    id="drop-sc"
+                    style="text-decoration: underline; color: blue"
+                    >Dress Material</a
+                  >
+                  <ul class="design-sub-menu">
+                    <a href="Floral.html">Floral</a>
+                    <a href="#">Geometric, Trellis</a>
+                    <a href="Jacobina.html">Jacobean</a>
+                    <a href="#">Leaves</a>
+                    <a href="#">Medallion</a>
+                    <a href="Paisley.html">Paisley</a>
+                    <a href="#">Patchworks</a>
+                    <a href="#">Scroll</a>
+                    <a href="#">Textures</a>
+                    <a href="#">Coastal, Nautical</a>
+                    <a href="#">Contemporary</a>
+                    <a href="#">Check Patterns</a>
+                    <a href="#">Damask</a>
+                    <a href="Ethnic.html">Ethnic</a>
+                    <a href="#">Stripes Pattern</a>
+                    <a href="#">Watercolor Patterns</a>
+                  </ul>
+                </div>
+                <div class="new-dropdown">
+                  <a
+                    href="#"
+                    id="drop-sc"
+                    style="text-decoration: underline; color: blue"
+                    >Seasonal</a
+                  >
+                  <ul class="design-sub-menu">
+                    <a href="#">Christmas</a>
+                    <a href="#">Halloween</a>
+                    <a href="#">Harvest</a>
+                  </ul>
+                </div>
+                <div class="new-dropdown">
+                  <a
+                    href="#"
+                    id="drop-sc"
+                    style="text-decoration: underline; color: blue"
+                    >Embroideries</a
+                  >
+                  <ul class="design-sub-menu">
+                    <a href="#">Coastal</a>
+                    <a href="#">Contemporary</a>
+                    <a href="#">Conversational</a>
+                    <a href="Ethnic.html">Ethnic</a>
+                    <a href="">Geometric</a>
+                    <a href="Jacobina.html">Jacobean And Scroll</a>
+                    <a href="#">Leaves And Damask</a>
+                    <a href="Paisley.html">Paisley</a>
+                    <a href="#">Texture</a>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="links-s">
+              <a href="trades.html">Trade Shows</a>
+            </div>
+            <div class="links-s">
+              <a href="about.html">About Us</a>
+            </div>
+            <div class="links-s">
+              <a href="contact.html">Contact</a>
+            </div>
+          </div>
+          <div class="log-links">
+            <!-- <img src="img/icons/search.png" alt="" class="search-trigger" /> -->
+            <i class="fa-solid fa-magnifying-glass search-trigger"></i>
+
+            <a href="./cart.html">
+              <!-- <img src="img/icons/bag.png" alt="" /> -->
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span>2</span>
+            </a>
+
+            <a href="#" class="in">Sign in</a>
+
+            <div class="nav-cl">
+              <i class="fa-solid fa-bars"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- nav bar end -->
+
+    
+    <div class="product-container">
+      <div class="image-container">
+        <img src="./RB-img/Suit/img6.jpg" alt="Sample Image" class="main-image" />
+        <div class="lens"></div>
+      </div>
+      
+      <div class="product-details">
+        <h1 class="product-title">Suit</h1>
+        <p class="product-price">
+          Rs 300
+          <span style="text-decoration: line-through; color: #999">Rs 500</span>
+        </p>
+    
+        <div class="product-overview">
+          <h3>Product Overview:</h3>
+          <ul>
+            <li>D-10037</li>
+            <li>Front-Size: 32"X 51"in</li>
+            <li>Back-Size: 32"X 51"in</li>
+            <li>Shawl-Size: 86.613"X 28.5"</li>
+            <li>Kani Kashmiree designs</li>
+            <li>PASHMINA DIGITAL PRINT</li>
+          </ul>
+        </div>
+        <div class="button-container">
+          <a href="./cart.html">
+            <button onclick="addToCart('Suit', 'Rs. 300', './RB-img/Suit/suit3/IMG-20241210-WA0041.jpg')" class="btn border border-secondary rounded-pill px-3 text-primary">
+              <i class="fa fa-shopping-bag me-2 text-primary"></i>
+              Add to cart
+            </button>
+          </a>
+          <button class="btn btn-primary rounded-pill px-3" onclick="redirectToCart()">
+            Buy Now
+          </button>
+        </div>
+      </div>
+    </div>
+         
+
+
+    <!-- Related Product Section End -->
+
+    <!-- Footer Section Begin -->
+
+    <footer class="footer-section spad">
+      <div class="container">
+        <div class="footer-widget">
+          <div class="row">
+            <div class="col-lg-3 col-sm-6">
+              <div class="single-footer-widget">
+                <img src="./RB-img/logo-bg remove.png" style="background-color: rgb(116, 118, 121); width: 150px;" alt="">
+              </div>
+            </div>
+
+
+            <div class="col-lg-3 col-sm-6">
+              <div class="single-footer-widget">
+                <h4>Links</h4>
+                <ul>
+                  <a href="about.html"><li>About Us</li></a>
+                  <a href="contact.html"><li>Contact Us</li> </a>
+                  <a href="#"><li>Terms and conditions</li></a>
+                  <a href="#"><li>Privacy Policy</li></a>
+                  
+                </ul>
+              </div>
+            </div>
+            
+            <div class="col-lg-3 col-sm-6">
+              <div class="single-footer-widget">
+                <h4>Our Services</h4>
+                <ul>
+                  <li>Suit & Dupatta</li>
+                  <li>Dress Material</li>
+                  <li>Seasonal</li>
+                  <li>Embroideries</li>
+
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+              <div class="single-footer-widget">
+                <h4>Social Media</h4>
+                <div class="social-links">
+                  <a href="" class="instagram"
+                    ><i class="fa-brands fa-instagram"></i><span>instagram</span></a
+                  >
+
+                  <br> <br>
+                  <!-- <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>Pinter's</span></a> -->
+                  <a href="" class="facebook"
+                    ><i class="fa-brands fa-facebook"></i><span>facebook</span></a
+                  >
+                  <br>
+                  <!-- <a href="" class="twitter"
+                    ><i class="fa-brands fa-twitter"></i><span>twitter</span></a
+                  > -->
+                  <br>
+                  <a href="" class="youtube"
+                    ><i class="fa-brands fa-youtube"></i><span>youtube</span></a
+                  >
+                  
+                  <!-- <a href="" class="tumblr"
+                    ><i class="fa-brands fa-tumblr-square"></i><span>tumblr</span></a
+                  > -->
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+        </div>
+      </div>
+      <div class="social-links-warp">
+        <div class="container">
+          
+        </div>
+
+        <div class="container text-center ">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            All rights reserved | Design
+            <i class="icon-heart color-danger" aria-hidden="true"></i> by
+            <a href="https://www.bhoomitechzone.in/" target="_blank">BTPL</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+
+
+    // Select elements
+    const imageContainer = document.querySelector('.image-container');
+    const lens = document.querySelector('.lens');
+    const mainImage = document.querySelector('.main-image');
+
+    // Event listeners
+    imageContainer.addEventListener('mousemove', moveLens);
+    imageContainer.addEventListener('mouseenter', () => {
+      lens.style.display = 'block';
+    });
+    imageContainer.addEventListener('mouseleave', () => {
+      lens.style.display = 'none';
+      mainImage.style.transformOrigin = 'center center'; // Reset transform origin
+    });
+
+    function moveLens(e) {
+      const rect = imageContainer.getBoundingClientRect();
+
+      // Calculate lens position
+      let x = e.clientX - rect.left - lens.offsetWidth / 2;
+      let y = e.clientY - rect.top - lens.offsetHeight / 2;
+
+      // Constrain lens position within the bounds of the container
+      const maxX = imageContainer.offsetWidth - lens.offsetWidth;
+      const maxY = imageContainer.offsetHeight - lens.offsetHeight;
+
+      if (x < 0) x = 0;
+      if (y < 0) y = 0;
+      if (x > maxX) x = maxX;
+      if (y > maxY) y = maxY;
+
+      // Move the lens
+      lens.style.left = x + 'px';
+      lens.style.top = y + 'px';
+
+      // Calculate transform origin for zoom effect
+      const zoomLevel = 2; // Same as the scale factor in CSS
+      const zoomX = (x + lens.offsetWidth / 2) / imageContainer.offsetWidth * 100;
+      const zoomY = (y + lens.offsetHeight / 2) / imageContainer.offsetHeight * 100;
+
+      mainImage.style.transformOrigin = `${zoomX}% ${zoomY}%`;
+    }
+  
+
+    </script>
+
+      
+  </body>
+</html>

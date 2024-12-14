@@ -58,61 +58,7 @@
 		});
 	});
 
-    /*------------------
-        Carousel Slider
-    --------------------*/
-     $(".hero-items").owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: true,
-        items: 1,
-        dots: true,
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-        smartSpeed: 1200,
-        autoplayHoverPause: true,
-        mouseDrag: false,
-        autoplay: false,
-    });
-
-    /*------------------
-        Carousel Slider
-    --------------------*/
-    $(".logo-items").owlCarousel({
-        loop: true,
-		nav: false,
-		dots: false,
-		margin : 40,
-		autoplay: true,
-        responsive: {
-            0: {
-                items: 2
-            },
-            480: {
-                items: 2
-            },
-            768: {
-                items: 3
-            },
-            992: {
-                items: 5
-            }
-        }
-    });
-
-
-    /*------------------
-        Carousel Slider
-    --------------------*/
-    $(".product-slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: false,
-        items: 1,
-        dots: true,
-        autoplay: true,
-    });
+  
     
 
     /*------------------
@@ -251,3 +197,105 @@ document.addEventListener('DOMContentLoaded', updateCartUI);
             mainImage.src = thumbnail.src;
         }
 
+
+
+
+        // product details js 
+
+
+        $(document).ready(function () {
+            $(".slideshow-thumbnails").hover(function () {
+              changeSlide($(this));
+            });
+        
+            $(document).mousemove(function (e) {
+              if (window.innerWidth > 768) { // Disable zoom for screens smaller than 768px
+                var x = e.clientX;
+                var y = e.clientY;
+        
+                var imgx1 = $(".slideshow-items.active").offset().left;
+                var imgx2 = $(".slideshow-items.active").outerWidth() + imgx1;
+                var imgy1 = $(".slideshow-items.active").offset().top;
+                var imgy2 = $(".slideshow-items.active").outerHeight() + imgy1;
+        
+                if (x > imgx1 && x < imgx2 && y > imgy1 && y < imgy2) {
+                  $("#lens").show();
+                  $("#result").show();
+                  imageZoom($(".slideshow-items.active"), $("#result"), $("#lens"));
+                } else {
+                  $("#lens").hide();
+                  $("#result").hide();
+                }
+              } else {
+                $("#lens").hide();
+                $("#result").hide();
+              }
+            });
+          });
+        
+          function imageZoom(img, result, lens) {
+            result.width(img.innerWidth());
+            result.height(img.innerHeight());
+            lens.width(img.innerWidth() / 2);
+            lens.height(img.innerHeight() / 2);
+        
+            result.offset({
+              top: img.offset().top,
+              left: img.offset().left + img.outerWidth() + 10,
+            });
+        
+            var cx = img.innerWidth() / lens.innerWidth();
+            var cy = img.innerHeight() / lens.innerHeight();
+        
+            result.css("backgroundImage", "url(" + img.attr("src") + ")");
+            result.css(
+              "backgroundSize",
+              img.width() * cx + "px " + img.height() * cy + "px"
+            );
+        
+            lens.mousemove(function (e) {
+              moveLens(e);
+            });
+            img.mousemove(function (e) {
+              moveLens(e);
+            });
+            lens.on("touchmove", function () {
+              moveLens();
+            });
+            img.on("touchmove", function () {
+              moveLens();
+            });
+        
+            function moveLens(e) {
+              var x = e.clientX - lens.outerWidth() / 2;
+              var y = e.clientY - lens.outerHeight() / 2;
+              if (x > img.outerWidth() + img.offset().left - lens.outerWidth()) {
+                x = img.outerWidth() + img.offset().left - lens.outerWidth();
+              }
+              if (x < img.offset().left) {
+                x = img.offset().left;
+              }
+              if (y > img.outerHeight() + img.offset().top - lens.outerHeight()) {
+                y = img.outerHeight() + img.offset().top - lens.outerHeight();
+              }
+              if (y < img.offset().top) {
+                y = img.offset().top;
+              }
+              lens.offset({ top: y, left: x });
+              result.css(
+                "backgroundPosition",
+                "-" +
+                  (x - img.offset().left) * cx +
+                  "px -" +
+                  (y - img.offset().top) * cy +
+                  "px"
+              );
+            }
+          }
+        
+          function changeSlide(elm) {
+            $(".slideshow-items").removeClass("active");
+            $(".slideshow-items").eq(elm.index()).addClass("active");
+            $(".slideshow-thumbnails").removeClass("active");
+            $(".slideshow-thumbnails").eq(elm.index()).addClass("active");
+          }

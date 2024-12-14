@@ -1,14 +1,96 @@
-<div class="col-lg-3 col-sm-6" style="margin-bottom: 50px;">
-    <a href="suit-details.html" style="text-decoration: none; color: inherit;">
-        <div class="single-product-item">
-            <figure>
-                <img src="./RB-img/Suit/IMG-20241209-WA0008.jpg" alt="Product 1" class="product-img">
-                <div class="p-sta">New</div>
-            </figure>
-        </div>
-        <div class="product-text" style="text-align: center;">
-            <h6 style="margin: 0; font-size: 18px; font-weight: bold;">Suit</h6>
-            <p style="margin: 5px 0; font-size: 16px; color: gray;">Rs. 000</p>
-        </div>
-    </a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Lens Effect</title>
+  <style>
+    /* Image container styling */
+    .image-container {
+      position: relative;
+      width: 250px;
+      height: 400px;
+      overflow: hidden;
+      border: 2px solid #ccc;
+      margin: 20px auto;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    /* Lens styling */
+    .lens {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      display: none;
+      z-index: 10;
+    }
+
+    /* Hover zoom effect */
+    .image-container:hover .main-image {
+      transform: scale(2);
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img src="./RB-img/Suit/img6.jpg" 
+         alt="Sample Image" class="main-image">
+    <div class="lens"></div>
+  </div>
+
+  <script>
+    // Select elements
+    const imageContainer = document.querySelector('.image-container');
+    const lens = document.querySelector('.lens');
+    const mainImage = document.querySelector('.main-image');
+
+    // Event listeners
+    imageContainer.addEventListener('mousemove', moveLens);
+    imageContainer.addEventListener('mouseenter', () => {
+      lens.style.display = 'block';
+    });
+    imageContainer.addEventListener('mouseleave', () => {
+      lens.style.display = 'none';
+      mainImage.style.transformOrigin = 'center center'; // Reset transform origin
+    });
+
+    function moveLens(e) {
+      const rect = imageContainer.getBoundingClientRect();
+
+      // Calculate lens position
+      let x = e.clientX - rect.left - lens.offsetWidth / 2;
+      let y = e.clientY - rect.top - lens.offsetHeight / 2;
+
+      // Constrain lens position within the bounds of the container
+      const maxX = imageContainer.offsetWidth - lens.offsetWidth;
+      const maxY = imageContainer.offsetHeight - lens.offsetHeight;
+
+      if (x < 0) x = 0;
+      if (y < 0) y = 0;
+      if (x > maxX) x = maxX;
+      if (y > maxY) y = maxY;
+
+      // Move the lens
+      lens.style.left = x + 'px';
+      lens.style.top = y + 'px';
+
+      // Calculate transform origin for zoom effect
+      const zoomLevel = 2; // Same as the scale factor in CSS
+      const zoomX = (x + lens.offsetWidth / 2) / imageContainer.offsetWidth * 100;
+      const zoomY = (y + lens.offsetHeight / 2) / imageContainer.offsetHeight * 100;
+
+      mainImage.style.transformOrigin = `${zoomX}% ${zoomY}%`;
+    }
+  </script>
+</body>
+</html>
